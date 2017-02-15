@@ -3,8 +3,9 @@ require 'mongo'
 require 'json/ext' # required for .to_json
 
 configure do
-  db = Mongo::Client.new([ 'localhost:27017' ], :database => 'savedata')
-  set :mongo_db, db[:savedata]
+  database = ENV['MONGODB_URL'].reverse.split('/', 2).map(&:reverse) || ['savedata', 'localhost:27017']
+  db = Mongo::Client.new([database[1]], :database => database[0])
+  set :mongo_db, db[database[0].to_sym]
 end
 
 set :port, ENV["PORT"] || 5000
