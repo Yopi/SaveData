@@ -2,6 +2,8 @@ require 'sinatra'
 require 'mongoid'
 require 'json/ext' # required for .to_json
 
+Mongoid.load!("mongoid.yml", :production)
+
 class SensorData
   include Mongoid::Document
   include Mongoid::Timestamps
