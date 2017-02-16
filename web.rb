@@ -8,32 +8,32 @@ class SensorData
 
   field :phone_udid, type: String
 
-  field :longitude, type: Double
-  field :latitude, type: Double
-  field :accelerometerX, type: Double
-  field :accelerometerY, type: Double
-  field :accelerometerZ, type: Double
-  field :gyroscopeX, type: Double
-  field :gyroscopeY, type: Double
-  field :gyroscopeZ, type: Double
-  field :magnetometerX, type: Double
-  field :magnetometerY, type: Double
-  field :magnetometerZ, type: Double
-  field :roll, type: Double
-  field :pitch, type: Double
-  field :yaw, type: Double
-  field :rotationX, type: Double
-  field :rotationY, type: Double
-  field :rotationZ, type: Double
-  field :gravityX, type: Double
-  field :gravityY, type: Double
-  field :gravityZ, type: Double
-  field :userAccelerationX, type: Double
-  field :userAccelerationY, type: Double
-  field :userAccelerationZ, type: Double
-  field :magneticFieldX, type: Double
-  field :magneticFieldY, type: Double
-  field :magneticFieldZ, type: Double
+  field :longitude, type: Float
+  field :latitude, type: Float
+  field :accelerometerX, type: Float
+  field :accelerometerY, type: Float
+  field :accelerometerZ, type: Float
+  field :gyroscopeX, type: Float
+  field :gyroscopeY, type: Float
+  field :gyroscopeZ, type: Float
+  field :magnetometerX, type: Float
+  field :magnetometerY, type: Float
+  field :magnetometerZ, type: Float
+  field :roll, type: Float
+  field :pitch, type: Float
+  field :yaw, type: Float
+  field :rotationX, type: Float
+  field :rotationY, type: Float
+  field :rotationZ, type: Float
+  field :gravityX, type: Float
+  field :gravityY, type: Float
+  field :gravityZ, type: Float
+  field :userAccelerationX, type: Float
+  field :userAccelerationY, type: Float
+  field :userAccelerationZ, type: Float
+  field :magneticFieldX, type: Float
+  field :magneticFieldY, type: Float
+  field :magneticFieldZ, type: Float
 end
 
 configure do
