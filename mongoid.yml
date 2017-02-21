@@ -1,4 +1,5 @@
 production:
   sessions:
     default:
+      database:
       uri: <%= ENV['MONGODB_URL'] %>
