@@ -1,5 +1,5 @@
 source 'http://rubygems.org'
-ruby '2.3.1'
+ruby '2.4.0'
 gem 'rack', '<2.0'
 gem 'sinatra'
 gem 'puma'
