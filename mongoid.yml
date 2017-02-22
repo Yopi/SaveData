@@ -1,6 +1,6 @@
 development: &defaults
   # Configure available database sessions. (required)
-  sessions:
+  clients:
     # Defines the default session. (required)
     default: &default_session
       # Defines the name of the default database that Mongoid can connect to.
@@ -68,14 +68,17 @@ test:
 
 <% if ENV['MONGO_URL'] %>
   <% uri = URI.parse(ENV['MONGO_URL']) %>
+  <% p uri %>
 production:
   <<: *defaults
-  sessions:
+  clients:
     default:
       <<: *default_session
       database: <%= uri.path.sub('/','') %>
-      username: <%= uri.user %>
-      password: <%= uri.password %>
       hosts:
         - <%= uri.host %>:<%= uri.port %>
+      options:
+        username: <%= uri.user %>
+        password: <%= uri.password %>
+
 <% end %>
