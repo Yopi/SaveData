@@ -39,17 +39,9 @@ class SensorData
 end
 
 configure do
-  database = ENV['MONGODB_URL'] || 'mongodb://localhost:27017/savedata'
   set :root, File.dirname(__FILE__)
+  Mongoid.configure.connect_to("")
 
-  Mongoid.configure do |config|
-    config.master = Mongo::Connection.new.db(database)
-    #config.logger = Logger.new($stdout, :warn)
-    config.logger = logger
-    config.persist_in_safe_mode = false
-  end
-
-  set :mongo_db, db[database[0].to_sym]
 end
 
 set :port, ENV["PORT"] || 5000
