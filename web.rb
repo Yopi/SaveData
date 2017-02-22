@@ -41,8 +41,6 @@ end
 
 configure do
   set :root, File.dirname(__FILE__)
-  Mongoid.configure.connect_to("")
-
 end
 
 set :port, ENV["PORT"] || 5000
