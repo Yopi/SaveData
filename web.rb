@@ -1,6 +1,7 @@
 require 'sinatra'
 require 'mongoid'
 require 'json/ext' # required for .to_json
+require 'uri'
 
 Mongoid.load!("mongoid.yml", :production)
 
