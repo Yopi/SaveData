@@ -65,6 +65,10 @@ post '/save' do
   content_type :json
   body = JSON.parse(request.body.read)
 
+  # Fix naming
+  body['data_points'] = body['data']
+  body.delete('data')
+
   s = SensorData.new(body)
   if s.save
     s.to_json
