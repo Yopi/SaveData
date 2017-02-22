@@ -1,5 +1,12 @@
 production:
-  sessions:
-    default:
-      database:
+  clients:
+    default:
+      database: savedata
       uri: <%= ENV['MONGODB_URL'] %>
+
+development:
+  clients:
+    default:
+      database: mongoid_dev
+      hosts:
+        - localhost:270
