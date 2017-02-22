@@ -66,8 +66,8 @@ test:
       <<: *default_session
       database: delight_test
 
-<% if ENV['MONGOHQ_URL'] %>
-  <% uri = URI.parse(ENV['MONGOHQ_URL']) %>
+<% if ENV['MONGO_URL'] %>
+  <% uri = URI.parse(ENV['MONGO_URL']) %>
 production:
   <<: *defaults
   sessions:
