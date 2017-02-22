@@ -82,5 +82,7 @@ production:
         password: <%= uri.password %>
         read:
           mode: :primary
+        write:
+          w: 1
 
 <% end %>

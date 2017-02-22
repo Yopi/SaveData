@@ -2,13 +2,24 @@ require 'sinatra'
 require 'mongoid'
 require 'json/ext' # required for .to_json
 require 'uri'
+require 'json'
+require 'pp'
 
 Mongoid.load!("mongoid.yml", :production)
 
 class SensorData
   include Mongoid::Document
   include Mongoid::Timestamps
+  embeds_many :data_points
+  accepts_nested_attributes_for :data_points
 
+  field :time, type: DateTime
+  field :phone_udid, type: String
+end
+
+class DataPoint
+  include Mongoid::Document
+  field :time, type: DateTime
   field :phone_udid, type: String
 
   field :longitude, type: Float
@@ -41,9 +52,9 @@ end
 
 configure do
   set :root, File.dirname(__FILE__)
+  set :port, ENV["PORT"] || 9292
+  set :bind, '0.0.0.0'
 end
-
-set :port, ENV["PORT"] || 5000
 
 get '/' do
   content_type :json
@@ -52,8 +63,9 @@ end
 
 post '/save' do
   content_type :json
-  p params
-  s = SensorData.new(params[:task])
+  body = JSON.parse(request.body.read)
+
+  s = SensorData.new(body)
   if s.save
     s.to_json
   else
