@@ -52,9 +52,7 @@ end
 
 post '/save' do
   content_type :json
-  db = settings.mongo_db
-  result = db.insert_one params
-
+  p params
   s = SensorData.new(params[:task])
   if s.save
     s.to_json
