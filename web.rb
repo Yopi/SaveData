@@ -1,6 +1,7 @@
 require 'sinatra'
 require 'mongoid'
 require 'json/ext' # required for .to_json
+require 'haml'
 require 'uri'
 require 'json'
 require 'pp'
@@ -57,8 +58,15 @@ configure do
 end
 
 get '/' do
+  content_type :html
+  data = SensorData.all.to_a
+  haml :index, locals: {data: data}
+end
+
+get '/data/:id' do
   content_type :json
-  SensorData.all.to_a.to_json
+  sd = SensorData.find(params[:id])
+  sd.to_json
 end
 
 post '/save' do
@@ -76,3 +84,19 @@ post '/save' do
     "Error saving doc"
   end
 end
+
+
+__END__
+
+@@ layout
+%html
+  = yield
+
+@@ index
+#h1 Data collections
+- data.each do |d|
+  %dl
+    %dt= d.time
+    %dt= d.phone_udid
+    %dd
+      %a{href: "/data/#{d.id}"}= d.id
