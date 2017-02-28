@@ -16,6 +16,7 @@ class SensorData
 
   field :time, type: DateTime
   field :phone_udid, type: String
+  field :name, type: String
 end
 
 class DataPoint
