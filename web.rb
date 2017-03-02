@@ -5,6 +5,7 @@ require 'haml'
 require 'uri'
 require 'json'
 require 'pp'
+require 'csv'
 
 Mongoid.load!("mongoid.yml", :production)
 
@@ -56,6 +57,7 @@ configure do
   set :root, File.dirname(__FILE__)
   set :port, ENV["PORT"] || 9292
   set :bind, '0.0.0.0'
+  set :public_folder, 'public'
 end
 
 get '/' do
@@ -65,10 +67,29 @@ get '/' do
 end
 
 get '/data/:id' do
+  content_type :html
+
+  haml :show, locals: {data: data}
+end
+
+
+get '/data/:id.json' do
   content_type :json
   sd = SensorData.find(params[:id])
   sd.to_json
 end
+
+get '/data/:id.csv' do
+  sd = SensorData.find(params[:id])
+  csv_string = CSV.generate do |csv|
+    headers = sd.first.keys
+    csv << headers
+    sd.each do |hash|
+      csv << hash.values
+    end
+  end
+end
+
 
 post '/save' do
   content_type :json
@@ -86,12 +107,18 @@ post '/save' do
   end
 end
 
+get '/script.js' do
+  send_file File.join(settings.public_folder, 'script.js')
+end
 
 __END__
 
 @@ layout
 %html
-  = yield
+  %head
+    %script{src: "https://d3js.org/d3.v4.min.js"}
+  %body
+    = yield
 
 @@ index
 #h1 Data collections
@@ -99,5 +126,11 @@ __END__
   %dl
     %dt= d.time
     %dt= d.phone_udid
+    %dt= d.name
     %dd
       %a{href: "/data/#{d.id}"}= d.id
+
+@@ show
+#h1= "#{ d.time } - #{ d.phone_udid }"
+
+%svg{width: "960", height: "500"}
