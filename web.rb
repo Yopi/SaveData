@@ -74,7 +74,7 @@ end
 
 get '/data/:id.csv' do
   sd = SensorData.find(params[:id])
-  csv_string = CSV.generate do |csv|
+  csv_string = FCSV.generate do |csv|
     csv << DataPoint.fields.keys
     sd.data_points.each do |dp|
       csv << dp.attributes.values
