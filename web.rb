@@ -5,7 +5,7 @@ require 'haml'
 require 'uri'
 require 'json'
 require 'pp'
-require 'csv'
+require 'fastercsv'
 
 Mongoid.load!("mongoid.yml", :production)
 
@@ -75,10 +75,9 @@ end
 get '/data/:id.csv' do
   sd = SensorData.find(params[:id])
   csv_string = CSV.generate do |csv|
-    headers = sd.first.keys
-    csv << headers
-    sd.each do |hash|
-      csv << hash.values
+    csv << DataPoint.fields.keys
+    sd.data_points.each do |dp|
+      csv << dp.attributes.values
     end
   end
 end
