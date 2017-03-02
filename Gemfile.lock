@@ -10,7 +10,6 @@ GEM
       tzinfo (~> 1.1)
     bson (4.2.1)
     concurrent-ruby (1.0.4)
-    fastercsv (1.5.5)
     haml (4.0.7)
       tilt
     i18n (0.8.0)
@@ -37,7 +36,6 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
-  fastercsv
   haml
   mongoid
   puma
