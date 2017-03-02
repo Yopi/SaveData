@@ -66,13 +66,6 @@ get '/' do
   haml :index, locals: {data: data}
 end
 
-get '/data/:id' do
-  content_type :html
-
-  haml :show, locals: {data: data}
-end
-
-
 get '/data/:id.json' do
   content_type :json
   sd = SensorData.find(params[:id])
@@ -88,6 +81,12 @@ get '/data/:id.csv' do
       csv << hash.values
     end
   end
+end
+
+get '/data/:id' do
+  content_type :html
+
+  haml :show
 end
 
 
