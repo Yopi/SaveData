@@ -18,6 +18,7 @@ class SensorData
   field :time, type: DateTime
   field :phone_udid, type: String
   field :name, type: String
+  field :smooth, type: Integer
 end
 
 class DataPoint
@@ -27,6 +28,7 @@ class DataPoint
 
   field :longitude, type: Float
   field :latitude, type: Float
+  field :speed, type: Float
   field :accelerometerX, type: Float
   field :accelerometerY, type: Float
   field :accelerometerZ, type: Float
