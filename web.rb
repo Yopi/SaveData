@@ -87,7 +87,10 @@ end
 get '/data/:id' do
   content_type :html
 
-  haml :show
+
+  sd = SensorData.find(params[:id])
+
+  haml :show, locals: {sensordata: sd}
 end
 
 
@@ -131,6 +134,6 @@ __END__
       %a{href: "/data/#{d.id}"}= d.id
 
 @@ show
-#h1= "#{ d.time } - #{ d.phone_udid }"
+#h1= "#{ sensordata.time } - #{ sensordata.phone_udid }"
 
 %svg{width: "960", height: "500"}
