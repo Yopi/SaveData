@@ -135,5 +135,6 @@ __END__
 
 @@ show
 #h1= "#{ sensordata.time } - #{ sensordata.phone_udid }"
-
+%a{href "/data/#{sensordata.id}.json"} JSON
+%a{href "/data/#{sensordata.id}.csv"} CSV
 %svg{width: "960", height: "500"}
