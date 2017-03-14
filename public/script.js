@@ -67,8 +67,7 @@ $(document).ready(function() {
 
     // Get the data. The contents of the data file can be viewed at
     // https://github.com/highcharts/highcharts/blob/master/samples/data/data.json
-    console.log('http://0.0.0.0:9292' + path)
-    $.getJSON('http://0.0.0.0:9292' + path, function (data) {
+    $.getJSON(path, function (data) {
         dataSetNames = Object.keys(data.data_points[0]);
         dataSetNames.shift();
         timeIndex = dataSetNames.indexOf('time')
