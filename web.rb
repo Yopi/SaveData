@@ -1,4 +1,5 @@
 require 'sinatra'
+require "sinatra/reloader" if development?
 require 'mongoid'
 require 'json/ext' # required for .to_json
 require 'haml'
@@ -119,7 +120,18 @@ __END__
 @@ layout
 %html
   %head
-    %script{src: "https://d3js.org/d3.v4.min.js"}
+    %script{src: "https://code.jquery.com/jquery-3.1.1.min.js"}
+    -# %script{src: "https://d3js.org/d3.v4.min.js"}
+    %script{src: "https://code.highcharts.com/highcharts.js"}
+    %script{src: "https://code.highcharts.com/modules/data.js"}
+    %script{src: "https://code.highcharts.com/modules/exporting.js"}
+    %script{src: "https://www.highcharts.com/samples/static/highslide-full.min.js"}
+    %script{src: "https://www.highcharts.com/samples/static/highslide.config.js", charset:"utf-8"}
+    :css
+      #container { width: 100%; }
+      @media (min-width: 1100px) {
+        #container > .chart { float: left; width: 50%; }
+      }
   %body
     = yield
 
@@ -137,4 +149,8 @@ __END__
 #h1= "#{ sensordata.time } - #{ sensordata.phone_udid }"
 %a{href: "/data/#{sensordata.id}.json"} JSON
 %a{href: "/data/#{sensordata.id}.csv"} CSV
-%svg{width: "960", height: "500"}
+#map{style: 'width:100%; height: 300px'}
+  &nbsp;
+#container
+  &nbsp;
+%script{src: "/script.js?cache=#{Time.now}"}

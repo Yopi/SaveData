@@ -84,5 +84,19 @@ production:
           mode: :primary
         write:
           w: 1
-
+<% else %>
+  <% uri = URI.parse("mongodb://127.0.0.1:27017/savedata") %>
+production:
+  <<: *defaults
+  clients:
+    default:
+      <<: *default_session
+      database: <%= uri.path.sub('/','') %>
+      hosts:
+        - <%= uri.host %>:<%= uri.port %>
+      options:
+        read:
+          mode: :primary
+        write:
+          w: 1
 <% end %>
