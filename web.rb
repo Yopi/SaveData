@@ -161,12 +161,11 @@ __END__
   &nbsp;
 %p
   Synchronize what?
-  %input{type:"checkbox", id:"chk-zoom" checked:""}
+  %input{type:"checkbox", id:"chk-zoom", checked:""}
   %label{for:"chk-zoom"} Zoom
-  %input{type:"checkbox" id:"chk-selection" checked:""}
+  %input{type:"checkbox", id:"chk-selection", checked:""}
   %label{for:"chk-selection"} Selection
 #container
   &nbsp;
 %script{src: "/script-dygraph.js?cache=#{Time.now.to_f}"}
 -# %script{src: "/script.js"}
-%svg{width: "960", height: "500"}
