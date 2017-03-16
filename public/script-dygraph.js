@@ -49,21 +49,21 @@ $(document).ready(function() {
 
       gyroscope = {
           data: data.data_points.map(function(val) { return [new Date(val['time']), val['gyroscopeX'], val['gyroscopeY'], val['gyroscopeZ']] }),
-          labels: ["Time", "Gyroscope X", "Gyroscope Y", "Gyroscope Z"]
+          labels: ["Time", "Gyroscope X", "Gyroscope Y", "Gyroscope Z"],
           type: "line",
           fillOpacity: 0.3
       }
 
       euler = {
           data: data.data_points.map(function(val) { return [new Date(val['time']), val['pitch'], val['roll'], val['yaw']] }),
-          labels: ["Time", "Pitch", "Roll", "Yaw"]
+          labels: ["Time", "Pitch", "Roll", "Yaw"],
           type: "line",
           fillOpacity: 0.3
       }
 
       rotation = {
         data: data.data_points.map(function(val) { return [new Date(val['time']), val['rotationX'], val['rotationY'], val['rotationZ']] }),
-        labels: ["Time", "Rotation X", "Rotation Y", "Rotation Z"]
+        labels: ["Time", "Rotation X", "Rotation Y", "Rotation Z"],
         type: "line",
         fillOpacity: 0.3
       }
@@ -90,7 +90,7 @@ $(document).ready(function() {
            })
         );
       });
-      
+
       var sync = Dygraph.synchronize(gs);
 
       function update() {
