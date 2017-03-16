@@ -27,14 +27,14 @@ $(document).ready(function() {
         // "accelerometerX", 1: "accelerometerY", 2: "accelerometerZ", 3: "gravityX", 4: "gravityY", 5: "gravityZ", 6: "gyroscopeX", 7: "gyroscopeY", 8: "gyroscopeZ", 9: "latitude", 10: "longitude", 11: "magneticFieldX", 12: "magneticFieldY", 13: "magneticFieldZ", 14: "magnetometerX", 15: "magnetometerY", 16: "magnetometerZ", 17: "phone_udid", 18: "pitch", 19: "roll", 20: "rotationX", 21: "rotationY", 22: "rotationZ", 23: "speed", 24: "time", 25: "userAccelerationX", 26: "userAccelerationY", 27: "userAccelerationZ", 28: "yaw"
 
         speed = {
-            data: data.data_points.map(function(val) { return [val['time'], val['speed']] }),
+            data: data.data_points.map(function(val) { return [new Date(val['time']), val['speed']] }),
             labels: ["Time", "Speed"],
             type: "line",
             fillOpacity: 0.3
         }
 
         accelerometer = {
-          data: data.data_points.map(function(val) { return [val['time'], val['accelerometerX'], val['accelerometerY'], val['accelerometerZ']] }),
+          data: data.data_points.map(function(val) { return [new Date(val['time']), val['accelerometerX'], val['accelerometerY'], val['accelerometerZ']] }),
           name: ["Time", "Accelerometer X", "Accelerometer Y", "Accelerometer Z"],
           type: "line",
           fillOpacity: 0.3
@@ -119,11 +119,11 @@ $(document).ready(function() {
         coords = data.data_points.map(function(val) { return {lat: val['latitude'], lng: val['longitude'] }});
         $('#container').after('<script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB4MHBHDoRerKr0vpVTz2X6ucFbbn-cElU&callback=initMap"></script>')
 
-        datasets = [speed, accelerometer, gravity, gyroscope, euler, user_acceleration];
+        datasets = [speed, accelerometer] //, gravity, gyroscope, euler, user_acceleration];
 
         $.each(datasets, function (i, dataset) {
           $('<div class="chart">').appendTo('#container')
-          new Dygraph(document.getElementByClassName("chart").pop(),
+          new Dygraph(document.getElementsByClassName("chart")[document.getElementsByClassName("chart").length - 1],
              dataset.data,
              {
                labels: dataset.labels
