@@ -127,11 +127,16 @@ __END__
     -# %script{src: "https://code.highcharts.com/modules/exporting.js"}
     -# %script{src: "https://www.highcharts.com/samples/static/highslide-full.min.js"}
     -# %script{src: "https://www.highcharts.com/samples/static/highslide.config.js", charset:"utf-8"}
-    ä# %script{src: "https://d3js.org/d3.v4.min.js"}
+    -# %script{src: "https://d3js.org/d3.v4.min.js"}
     :css
       #container { width: 100%; }
       @media (min-width: 1100px) {
         #container > .chart { float: left; width: 50%; }
+      }
+      .chart {
+          margin-left: 40; #// Keep all charts left aligned
+          margin-top: 20;
+          margin-bottom: 20;
       }
     %script{src: "//cdnjs.cloudflare.com/ajax/libs/dygraph/2.0.0/dygraph.min.js"}
     %link{rel: "stylesheet", src: "//cdnjs.cloudflare.com/ajax/libs/dygraph/2.0.0/dygraph.min.css"}/
@@ -154,6 +159,12 @@ __END__
 %a{href: "/data/#{sensordata.id}.csv"} CSV
 #map{style: 'width:100%; height: 300px'}
   &nbsp;
+%p
+  Synchronize what?
+  %input{type:"checkbox", id:"chk-zoom" checked:""}
+  %label{for:"chk-zoom"} Zoom
+  %input{type:"checkbox" id:"chk-selection" checked:""}
+  %label{for:"chk-selection"} Selection
 #container
   &nbsp;
 %script{src: "/script-dygraph.js?cache=#{Time.now.to_f}"}
