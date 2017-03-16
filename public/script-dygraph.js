@@ -103,6 +103,5 @@ $(document).ready(function() {
         });
       }
       $('#chk-zoom, #chk-selection').change(update);
-      }
     });
 });
