@@ -121,17 +121,20 @@ __END__
 %html
   %head
     %script{src: "https://code.jquery.com/jquery-3.1.1.min.js"}
-    -# %script{src: "https://d3js.org/d3.v4.min.js"}
-    %script{src: "https://code.highcharts.com/highcharts.js"}
-    %script{src: "https://code.highcharts.com/modules/data.js"}
-    %script{src: "https://code.highcharts.com/modules/exporting.js"}
-    %script{src: "https://www.highcharts.com/samples/static/highslide-full.min.js"}
-    %script{src: "https://www.highcharts.com/samples/static/highslide.config.js", charset:"utf-8"}
+    -# -# %script{src: "https://d3js.org/d3.v4.min.js"}
+    -# %script{src: "https://code.highcharts.com/highcharts.js"}
+    -# %script{src: "https://code.highcharts.com/modules/data.js"}
+    -# %script{src: "https://code.highcharts.com/modules/exporting.js"}
+    -# %script{src: "https://www.highcharts.com/samples/static/highslide-full.min.js"}
+    -# %script{src: "https://www.highcharts.com/samples/static/highslide.config.js", charset:"utf-8"}
+    ä# %script{src: "https://d3js.org/d3.v4.min.js"}
     :css
       #container { width: 100%; }
       @media (min-width: 1100px) {
         #container > .chart { float: left; width: 50%; }
       }
+    %script{src: "//cdnjs.cloudflare.com/ajax/libs/dygraph/2.0.0/dygraph.min.js"}
+    %link{rel: "stylesheet", src: "//cdnjs.cloudflare.com/ajax/libs/dygraph/2.0.0/dygraph.min.css"}/
   %body
     = yield
 
@@ -153,4 +156,6 @@ __END__
   &nbsp;
 #container
   &nbsp;
-%script{src: "/script.js?cache=#{Time.now}"}
+%script{src: "/script-dygraph.js?cache=#{Time.now.to_f}"}
+-# %script{src: "/script.js"}
+%svg{width: "960", height: "500"}
