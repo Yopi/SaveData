@@ -35,7 +35,7 @@ $(document).ready(function() {
 
         accelerometer = {
           data: data.data_points.map(function(val) { return [new Date(val['time']), val['accelerometerX'], val['accelerometerY'], val['accelerometerZ']] }),
-          name: ["Time", "Accelerometer X", "Accelerometer Y", "Accelerometer Z"],
+          labels: ["Time", "Accelerometer X", "Accelerometer Y", "Accelerometer Z"],
           type: "line",
           fillOpacity: 0.3
         }
